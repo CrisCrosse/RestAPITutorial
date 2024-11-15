@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 @SpringBootApplication
 public class RunRestAPI {
@@ -28,11 +27,11 @@ public class RunRestAPI {
 						1,
 						"first run",
 						LocalDateTime.now(),
-						LocalDateTime.now().plus(1, ChronoUnit.HOURS),
+                    	LocalDateTime.now().plusHours(1),
 						5,
 						Location.INDOOR
 					);
-			log.info("Run: " + run);
+			log.info(String.valueOf(run));
 			};
 		}
 	}
