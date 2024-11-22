@@ -37,10 +37,6 @@ public class RunRepository {
         existingRun.ifPresent(runs::remove);
     }
 
-    Boolean is_valid_run(Run run) {
-        return run.startedOn().isBefore(run.completedOn());
-    }
-
     @PostConstruct
     private void init() {
         runs.add(
