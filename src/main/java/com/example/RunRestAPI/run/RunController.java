@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,14 +17,14 @@ public class RunController {
     }
 
     @GetMapping("")
-    ArrayList<Run> findAll() {
+    List<Run> findAll() {
         return runRepository.findAll();
     }
 
     @GetMapping("/{id}")
     Run findByID(@PathVariable int id) {
 
-        Optional<Run> run = runRepository.findByID(id);
+        Optional<Run> run = runRepository.findById(id);
         if (run.isEmpty()) {
             throw new RunNotFoundException();
         } else {
