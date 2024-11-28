@@ -47,11 +47,11 @@ Content-Type: application/json
 }
 
 ### Update an existing Run
-PUT http://localhost:8080/api/runs/11
+PUT http://localhost:8080/api/runs/3
 Content-Type: application/json
 
 {
-  "id": 11,
+  "id": 3,
   "title": "UPDATED TITLE",
   "startedOn": "2024-02-10T15:00:12.49766",
   "completedOn": "2024-02-10T16:01:12.497678",
