@@ -63,4 +63,12 @@ public class RunController {
         runRepository.deleteById(id);
     }
 
+
+    // Find by Location
+    @ResponseStatus(HttpStatus.FOUND)
+    @GetMapping("/LOC/{requestedLocation}")
+    List<Run> findByLocation(@PathVariable String requestedLocation) {
+        Location requestedLocationEnum = Location.valueOf(requestedLocation);
+        return runRepository.findAllByLocation(requestedLocationEnum);
+    }
 }
