@@ -36,15 +36,23 @@ public class RunController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void create(@Valid @RequestBody Run run) {
-        runRepository.create(run);
+        runRepository.save(run);
     }
 
 
     // PUT
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    void update(@Valid @RequestBody Run run, @PathVariable int id) {
-        runRepository.update(run, id);
+    void update(@Valid @RequestBody Run run, @PathVariable int id) throws Exception {
+        if (run.id() == id) {
+            if (runRepository.existsById(id)){
+                runRepository.save(run);
+            } else {
+                throw new RunNotFoundException();
+            }
+        } else {
+            throw new Exception("requested id to update does not match id passed in body, use post if intended");
+        }
     }
 
 
@@ -52,7 +60,7 @@ public class RunController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void delete(@PathVariable int id) {
-        runRepository.delete(id);
+        runRepository.deleteById(id);
     }
 
 }
